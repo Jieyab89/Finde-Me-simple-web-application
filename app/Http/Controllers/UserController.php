@@ -136,10 +136,10 @@ class UserController extends Controller
 		$validation = $request->validate([
 			'name' => 'required|min:5|max:150|',
 			'email' => 'required|min:8|max:45|nullable',
-      'gender' => 'required|nullable',
-      'relationship' => 'required|nullable',
-      'alamat' => 'required|min:5|max:150|nullable',
-      'phone' => 'required|min:5|max:150|nullable|unique:users,phone,'  .  $id,
+            'gender' => 'required|nullable',
+            'relationship' => 'required|nullable',
+            'alamat' => 'required|min:5|max:50|nullable',
+            'phone' => 'required|min:5|max:13|nullable|unique:users,phone,'  .  $id,
 			'photo' => 'image|mimes:jpeg,png,jpg|max:2408',
 		]);
 
@@ -151,14 +151,15 @@ class UserController extends Controller
     $profile_photo->move($user_photo, $file);
 
     $user->update([
-			'name' => $request->name,
+	  'name' => $request->name,
       'email' => $request->email,
       'gender' => $request->gender,
       'relationship' => $request->relationship,
       'alamat' => $request->alamat,
       'phone' => $request->phone,
       'photo' => $file,
-		]);
+	
+    ]);
 
 		return back()->with('sukses');
 	}
