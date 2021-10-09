@@ -75,7 +75,7 @@ class UserController extends Controller
 
 		$user = User::find($id);
 		$total_post = Posts::where('user_id', $id)->get();
-        //$post = Posts::find($id);
+    //$post = Posts::find($id);
 
 		return view('users.editpost', compact('user', 'total_post', 'post'));
 	}
@@ -129,12 +129,13 @@ class UserController extends Controller
     return view('users.profiles', compact('user'));
   }
 
-  public function update(Request $request, Posts $post)
+  public function update(Request $request)
 	{
-      $id = Auth::user()->id;
-	  $validation = $request->validate([
-	  'name' => 'required|min:5|max:150|',
-	  'email' => 'required|min:8|max:45|nullable',
+    $id = Auth::user()->id;
+
+		$validation = $request->validate([
+			'name' => 'required|min:5|max:150|',
+			'email' => 'required|min:8|max:45|nullable',
       'gender' => 'required|nullable',
       'relationship' => 'required|nullable',
       'alamat' => 'required|min:5|max:150|nullable',
@@ -142,23 +143,22 @@ class UserController extends Controller
 			'photo' => 'image|mimes:jpeg,png,jpg|max:2408',
 		]);
 
-        $user = User::findOrFail($id);
-        $profile_photo = $request->file('photo');
-        $file = time()."_".$profile_photo->getClientOriginalName();
+    $user = User::findOrFail($id);
+    $profile_photo = $request->file('photo');
+    $file = time()."_".$profile_photo->getClientOriginalName();
 
-        $user_photo = 'images/user';
-        $profile_photo->move($user_photo, $file);
+    $user_photo = 'images/user';
+    $profile_photo->move($user_photo, $file);
 
-        $user->update([
-	    'name' => $request->name,
-        'email' => $request->email,
-        'gender' => $request->gender,
-        'relationship' => $request->relationship,
-        'alamat' => $request->alamat,
-        'phone' => $request->phone,
-        'photo' => $file,
-		
-        ]);
+    $user->update([
+			'name' => $request->name,
+      'email' => $request->email,
+      'gender' => $request->gender,
+      'relationship' => $request->relationship,
+      'alamat' => $request->alamat,
+      'phone' => $request->phone,
+      'photo' => $file,
+		]);
 
 		return back()->with('sukses');
 	}
