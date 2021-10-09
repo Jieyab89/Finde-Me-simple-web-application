@@ -23,7 +23,7 @@
                 <div class="container">
                   <form action="{{ route('users.update') }}" method="post" enctype="multipart/form-data">
                       @csrf
-						          @method('put')
+					  @method('put')
 
                       <div class="form-group row">
                           <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
