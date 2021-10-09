@@ -50,5 +50,6 @@ Then go to app settings you can Enable client events. Last you make name your ap
 
 * Run "php artisan migrate"
 * Run "php artisan serve"
+* Make new "user folder" at public/images/user 
 
 ## Enjoy
