@@ -10,7 +10,7 @@ Interface : Bootstrap
 
 Backend : Php, js, Node
 
-* Easey to learn
+* Easy to learn
 * Full Bootsrap
 
 ![Laravel](https://img.shields.io/badge/-Laravel&nbsp;Framework&nbsp;7.30.4-282A36?style=flat&logo=laravel)
