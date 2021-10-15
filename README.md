@@ -10,6 +10,9 @@ Interface : Bootstrap
 
 Backend : Php, js, Node
 
+* Easey to learn
+* Full Bootsrap
+
 ![Laravel](https://img.shields.io/badge/-Laravel&nbsp;Framework&nbsp;7.30.4-282A36?style=flat&logo=laravel)
 
 ## Features
@@ -20,10 +23,11 @@ Backend : Php, js, Node
 * Vip users (coming soon)
 * Activity Users
 * ORM & Eloquent support
-* Easey to learn
-* Full Bootsrap
 
-#### Status : On Development
+#### Status : 
+
+On Development
+
 ## Usage
 
 Requirement
@@ -41,14 +45,21 @@ Install
 * Run "copy .env.example .env" (windows)
 * Run "php artisan key:generate"
 * Edit .env then make your database and pusher credential
+
 for example
+
 PUSHER_APP_ID=ID
+
 PUSHER_APP_KEY=Key
+
 PUSHER_APP_SECRET=Secret
+
 PUSHER_APP_CLUSTER=Cluster
+
 Then go to app settings you can Enable client events. Last you make name your app
 
 * Run "php artisan migrate"
 * Run "php artisan serve"
+* Make new "user folder" at public/images/user 
 
 ## Enjoy
