@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 route::get('/', 'LandingController@index')->name('welcome');
 //routes menu
-Route::get('/feeds', 'MenuController@index')->name('index');
+Route::get('/feeds', 'MenuController@index')->name('index')->middleware(['auth']);
 Route::get('/about', 'MenuController@about')->name('about');
 Route::get('/pricing', 'MenuController@pricing')->name('pricing');
 Route::get('/contact-us', 'MenuController@contact')->name('contact');
-Route::get('/user-list', 'MenuController@userlist')->name('list');
+Route::get('/user-list', 'MenuController@userlist')->name('list')->middleware(['auth']);
 //end routes menu
 
 Auth::routes(); //auth rotes

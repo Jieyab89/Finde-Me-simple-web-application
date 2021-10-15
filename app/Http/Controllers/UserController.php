@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Posts;
+use voku\helper\AntiXSS;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class UserController extends Controller
 {
@@ -16,6 +19,16 @@ class UserController extends Controller
 
   public function post()
   {
+    SEOTools::metatags();
+		SEOTools::twitter();
+		SEOTools::opengraph();
+		SEOTools::jsonLd();
+
+		SEOTools::setTitle('Post Feeds');
+		SEOTools::setDescription('Find Me matchmaking web-based application is useful for facilitating people who are looking for new relationships');
+		SEOTools::setCanonical(URL::current());
+		SEOTools::addImages('URL::current()/logo.png');
+
      return view('post');
   }
 
@@ -28,10 +41,13 @@ class UserController extends Controller
       'photo' => 'image|mimes:jpeg,png,jpg,gif|max:5408',
     ]);
 
+    $antiXss = new AntiXSS();
+		$antiXss->removeEvilHtmlTags(array('iframe'));
+    $content = $antiXss->xss_clean($request->content);
+
     $id = Auth::user()->id;
     $user = User::find($id);
     //dd($user);
-    $content = $request->content;
     $photo = $request->file('photo');
     $file = time()."_".$photo->getClientOriginalName();
 
@@ -60,6 +76,16 @@ class UserController extends Controller
 
   public function activity()
   {
+    SEOTools::metatags();
+		SEOTools::twitter();
+		SEOTools::opengraph();
+		SEOTools::jsonLd();
+
+		SEOTools::setTitle('My activity');
+		SEOTools::setDescription('Find Me matchmaking web-based application is useful for facilitating people who are looking for new relationships');
+		SEOTools::setCanonical(URL::current());
+		SEOTools::addImages('URL::current()/logo.png');
+
     $id = Auth::user()->id;
     $total_post = Posts::where('user_id', $id)->latest()->paginate(5);
 
@@ -68,6 +94,16 @@ class UserController extends Controller
 
   public function editpost(Posts $post)
 	{
+    SEOTools::metatags();
+		SEOTools::twitter();
+		SEOTools::opengraph();
+		SEOTools::jsonLd();
+
+		SEOTools::setTitle('Post Edit');
+		SEOTools::setDescription('Find Me matchmaking web-based application is useful for facilitating people who are looking for new relationships');
+		SEOTools::setCanonical(URL::current());
+		SEOTools::addImages('URL::current()/logo.png');
+
 		$id = Auth::user()->id;
 		if($post->user_id !== $id){
 			return abort(404);
@@ -89,6 +125,10 @@ class UserController extends Controller
 
 		]);
 
+    $antiXss = new AntiXSS();
+		$antiXss->removeEvilHtmlTags(array('iframe'));
+    $content = $antiXss->xss_clean($request->content);
+
 		$idUser = Auth::user()->id;
 		$user = User::find($idUser);
 		$post = Posts::findOrFail($id);
@@ -101,7 +141,6 @@ class UserController extends Controller
 
     $feed_upload = 'feed';
     $photo->move($feed_upload, $file);
-		$content = $request->content;
 
 		$post->update([
 			'title' => $request->title,
@@ -123,13 +162,23 @@ class UserController extends Controller
 
   public function profiles()
   {
+    SEOTools::metatags();
+		SEOTools::twitter();
+		SEOTools::opengraph();
+		SEOTools::jsonLd();
+
+		SEOTools::setTitle('My Profiles');
+		SEOTools::setDescription('Find Me matchmaking web-based application is useful for facilitating people who are looking for new relationships');
+		SEOTools::setCanonical(URL::current());
+		SEOTools::addImages('URL::current()/logo.png');
+
     $id = Auth::user()->id;
 		$user = User::find($id);
 
     return view('users.profiles', compact('user'));
   }
 
-  public function update(Request $request, Posts $post)
+  public function update(Request $request)
 	{
     $id = Auth::user()->id;
 
@@ -142,6 +191,11 @@ class UserController extends Controller
       'phone' => 'required|min:5|max:150|nullable|unique:users,phone,'  .  $id,
 			'photo' => 'image|mimes:jpeg,png,jpg|max:2408',
 		]);
+
+    $antiXss = new AntiXSS();
+		$antiXss->removeEvilHtmlTags(array('iframe'));
+    $name = $antiXss->xss_clean($request->name);
+    $alamat = $antiXss->xss_clean($request->alamat);
 
     $user = User::findOrFail($id);
     $profile_photo = $request->file('photo');

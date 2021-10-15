@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    {!! SEO::generate() !!}
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -51,7 +51,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto" style="padding-left:80px;">
                       <li class="nav-item active">
-                         <a class="nav-link" href="{{ route('index') }}">Home</a>
+                         <a class="nav-link" href="{{ route('welcome') }}">Home</a>
+                       </li>
+                      <li class="nav-item active">
+                         <a class="nav-link" href="{{ route('index') }}">Feed</a>
                        </li>
                        <li class="nav-item active">
                           <a class="nav-link" href="{{ route('about') }}">About</a>
