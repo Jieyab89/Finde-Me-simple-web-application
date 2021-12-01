@@ -48,13 +48,29 @@ Install
 
 for example
 
-PUSHER_APP_ID=ID
+Database :
 
-PUSHER_APP_KEY=Key
+> DB_CONNECTION=mysql
+> 
+> DB_HOST=127.0.0.1
+> 
+> DB_PORT=3306
+> 
+> DB_DATABASE=your database
+> 
+> DB_USERNAME=your username
+> 
+> DB_PASSWORD=your password
 
-PUSHER_APP_SECRET=Secret
 
-PUSHER_APP_CLUSTER=Cluster
+Pusher 
+> PUSHER_APP_ID=ID
+> 
+> PUSHER_APP_KEY=Key
+>
+> PUSHER_APP_SECRET=Secret
+> 
+> PUSHER_APP_CLUSTER=Cluster
 
 Then go to app settings you can Enable client events. Last you make name your app
 
