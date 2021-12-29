@@ -2,6 +2,16 @@
 
 @section('content')
 <div class="container">
+  @if (session('done'))
+    <div class="alert alert-success" role="alert">
+      {{ session('done') }}
+    </div>
+  @endif
+  @if (session('delete'))
+    <div class="alert alert-danger" role="alert">
+      {{ session('delete') }}
+    </div>
+  @endif
     <div class="row justify-content-center">
         <div class="col-lg-12">
          <h1 style="text-align:center;">Activity</h1>
