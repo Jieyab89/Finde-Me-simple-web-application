@@ -29,7 +29,7 @@ class UserController extends Controller
 		SEOTools::setCanonical(URL::current());
 		SEOTools::addImages('URL::current()/logo.png');
 
-     return view('post');
+    return view('post');
   }
 
   public function store(Request $request)
@@ -71,7 +71,7 @@ class UserController extends Controller
 		}
     */
 
-    return back()->with('sukses data masuk');
+    return back()->with(['done' => 'Uploaded!']);
   }
 
   public function activity()
@@ -149,7 +149,7 @@ class UserController extends Controller
 
 		]);
 
-		return redirect()->route('activity')->with('Sukses');
+		return redirect()->route('activity')->with(['done' => 'Updated!']);
 	}
 
   public function delpost($id)
@@ -157,7 +157,7 @@ class UserController extends Controller
 		$post = Posts::findOrFail($id);
 		$post->delete();
 
-		return redirect()->back()->with('data hapus');
+		return redirect()->back()->with(['delete' => 'deleted!']);
 	}
 
   public function profiles()
@@ -185,10 +185,10 @@ class UserController extends Controller
 		$validation = $request->validate([
 			'name' => 'required|min:5|max:150|',
 			'email' => 'required|min:8|max:45|nullable',
-            'gender' => 'required|nullable',
-            'relationship' => 'required|nullable',
-            'alamat' => 'required|min:5|max:50|nullable',
-            'phone' => 'required|min:5|max:13|nullable|unique:users,phone,'  .  $id,
+      'gender' => 'required|nullable',
+      'relationship' => 'required|nullable',
+      'alamat' => 'required|min:5|max:50|nullable',
+      'phone' => 'required|min:5|max:13|nullable|unique:users,phone,'  .  $id,
 			'photo' => 'image|mimes:jpeg,png,jpg|max:2408',
 		]);
 
@@ -205,14 +205,14 @@ class UserController extends Controller
     $profile_photo->move($user_photo, $file);
 
     $user->update([
-	  'name' => $request->name,
+	    'name' => $request->name,
       'email' => $request->email,
       'gender' => $request->gender,
       'relationship' => $request->relationship,
       'alamat' => $request->alamat,
       'phone' => $request->phone,
       'photo' => $file,
-	
+
     ]);
 
 		return back()->with('sukses');

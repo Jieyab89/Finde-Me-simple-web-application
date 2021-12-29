@@ -3,6 +3,11 @@
 @section('content')
 
 <div class="container">
+  @if (session('done'))
+    <div class="alert alert-success" role="alert">
+      {{ session('done') }}
+    </div>
+  @endif
   <form action="{{ route('users.post.update', $post->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('post')

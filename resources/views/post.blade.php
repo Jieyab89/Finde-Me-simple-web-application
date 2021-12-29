@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+  @if (session('done'))
+    <div class="alert alert-success" role="alert">
+      {{ session('done') }}
+    </div>
+  @endif
   <form action="{{ route('upload.post') }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('post')

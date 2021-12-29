@@ -36,9 +36,9 @@
 
                             <div class="col-md-6">
                               <input type="radio" id="gender" name="gender" value="Pria">
-                                <label for="pria">Pria</label><br>
+                                <label for="pria">Men</label><br>
                                 <input type="radio" id="gender" name="gender" value="Wanita">
-                                <label for="wanita">Wanita</label><br>
+                                <label for="wanita">Female</label><br>
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}</label>
+                            <label for="alamat" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="alamat" type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="Jl. Buncit Raya nomor 25 RT 02 RW 24 Pejaten, Kecamatan Pasar Minggu Jakarta Selatan 12510" required autocomplete="alamat">
