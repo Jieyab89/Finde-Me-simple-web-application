@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //routes landing page
 
-route::get('/', 'LandingController@index')->name('welcome');
+Route::get('/', 'LandingController@index')->name('welcome');
 //routes menu
 Route::get('/feeds', 'MenuController@index')->name('index')->middleware(['auth']);
 Route::get('/about', 'MenuController@about')->name('about');
